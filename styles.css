@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Rafi | Web Developer Portfolio</title>
+  <style>
+    :root {
+      --black: #111;
+      --white: #fff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding: 0 20px;
+    }
+    header {
+      padding: 48px 0 24px 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    .intro {
+      max-width: 600px;
+      margin: 32px auto 48px auto;
+      font-size: 1.1rem;
+      color: #eee;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--white);
+      display: inline-block;
+      padding-bottom: 5px;
+      letter-spacing: 1px;
+    }
+    .projects, .skills {
+      max-width: 700px;
+      margin: 0 auto 48px auto;
+    }
+    .project-list {
+      list-style: none;
+      padding: 0;
+    }
+    .project-list li {
+      background: #191919;
+      margin-bottom: 18px;
+      padding: 18px 24px;
+      border-radius: 8px;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .project-list li:hover {
+      background: #222;
+    }
+    .project-list a {
+      color: var(--white);
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    .project-list a:hover {
+      color: #ccc;
+      text-decoration: underline;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .skill {
+      background: #191919;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 1rem;
+      color: var(--white);
+      border: 1px solid #333;
+      letter-spacing: 1px;
+    }
+    .contact {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .contact a {
+      color: var(--white);
+      font-size: 1.1rem;
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .projects, .skills {
+        padding: 0 8px;
+      }
+      .project-list li {
+        padding: 12px 10px;
+      }
+      .skills-list {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hey there! 👋 I’m Rafi</h1>
+    <p>Web Developer • B.Tech Student • Dreamer</p>
+  </header>
+  <div class="intro">
+    I’m Rafi, a web developer who’s all about crafting cool stuff with code.<br><br>
+    I’m also a B.Tech student, totally hooked on tech and how it all works.<br><br>
+    Born and raised in India, but now I’m here in Silicon Valley, chasing that big dream.<br><br>
+    You’ll find me coding into the wee hours or dreaming up ideas over coffee at a café.<br><br>
+    This is just the start of my adventure, and I’m pumped to keep writing it with code and a whole lot of guts. 💻✨
+  </div>
+  <section class="projects">
+    <div class="section-title">Projects</div>
+    <ul class="project-list">
+      <li>
+        <a href="https://www.stylx.shop" target="_blank">Stylx Shop</a>
+        <span>Modern e-commerce platform</span>
+      </li>
+      <li>
+        <a href="https://www.edumark.site" target="_blank">Edumark</a>
+        <span>Education & Learning Portal</span>
+      </li>
+      <li>
+        <a href="https://www.hotface.site" target="_blank">Hotface</a>
+        <span>Social & Networking Platform</span>
+      </li>
+    </ul>
+  </section>
+  <section class="skills">
+    <div class="section-title">Skills</div>
+    <div class="skills-list">
+      <span class="skill">HTML</span>
+      <span class="skill">CSS</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Node.js</span>
+      <span class="skill">WordPress</span>
+      <span class="skill">Tailwind CSS</span>
+      <span class="skill">Git</span>
+    </div>
+  </section>
+  <section class="contact">
+    <div class="section-title">Contact</div>
+    <p>
+      <a href="mailto:heyxrafi@hotmail.com">heyxrafi@hotmail.com</a>
+    </p>
+  </section>
+</body>
+</html>
