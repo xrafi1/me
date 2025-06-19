@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafi's Portfolio</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/QjpKj8jg/a56b53734556c81006c5ca3575f294aa.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -15,11 +14,14 @@
             overflow-x: hidden;
         }
         .navbar {
-            background-color: #000000;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .navbar.scrolled {
-            background-color: rgba(0, 0, 0, 0.95);
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
         }
         .hero-text {
             font-size: 4.5rem;
@@ -31,11 +33,11 @@
             min-height: 100vh;
             padding: 4rem 1rem;
         }
-        .project-card, .skill-card {
+        .project-card {
             background: linear-gradient(145deg, #1C2526, #0A0A0A);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .project-card:hover, .skill-card:hover {
+        .project-card:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
         }
@@ -46,7 +48,7 @@
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
-        /* Override Tailwind colors for black-and-white theme */
+        /* Override Tailwind colors to ensure black-and-white */
         .text-gray-300, .text-gray-400, .text-gray-200 {
             color: #B3B3B3 !important;
         }
@@ -62,34 +64,20 @@
         .hover\:border-gray-400:hover {
             border-color: #B3B3B3 !important;
         }
-        .navbar-logo {
-            height: 40px;
-            width: auto;
-        }
-        @media (max-width: 768px) {
-            .navbar-logo {
-                height: 32px;
-            }
-        }
-        /* Mobile-friendly navbar styles */
-        .nav-menu {
+        /* Mobile menu styles */
+        .mobile-menu {
             transition: transform 0.3s ease-in-out;
-        }
-        .nav-menu.active {
-            transform: translateX(0);
         }
         .hamburger {
             display: none;
             flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
             cursor: pointer;
         }
         .hamburger span {
-            width: 100%;
+            width: 25px;
             height: 3px;
-            background-color: #FFFFFF;
+            background: #FFFFFF;
+            margin: 2px 0;
             transition: all 0.3s ease;
         }
         .hamburger.active span:nth-child(1) {
@@ -105,31 +93,23 @@
             .hamburger {
                 display: flex;
             }
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: 0;
-                height: 100vh;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.95);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transform: translateX(100%);
+            .nav-links {
+                display: none;
             }
-            .nav-menu.active {
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
+                backdrop-filter: blur(10px);
+                padding: 1rem;
                 transform: translateX(0);
             }
-            .nav-menu li {
-                margin: 1.5rem 0;
-            }
-            .nav-menu a {
-                font-size: 1.5rem;
-            }
-        }
-        @media (min-width: 769px) {
-            .nav-menu {
-                flex-direction: row;
+            .nav-links li {
+                margin: 1rem 0;
             }
         }
     </style>
@@ -138,17 +118,15 @@
     <!-- Navbar -->
     <nav class="navbar fixed top-0 left-0 w-full z-50 py-4">
         <div class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#home">
-                <img src="https://i.ibb.co/QjpKj8jg/a56b53734556c81006c5ca3575f294aa.png" alt="Rafi's Logo" class="navbar-logo">
-            </a>
+            <h1 class="text-3xl font-extrabold tracking-tight">Rafi</h1>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <ul class="nav-menu flex space-x-8 text-lg" id="nav-menu">
+            <ul class="nav-links flex space-x-8 text-lg" id="nav-links">
+                <li><a href="#home" class="hover:text-gray-400 transition">Home</a></li>
                 <li><a href="#about" class="hover:text-gray-400 transition">About</a></li>
-                <li><a href="#skills" class="hover:text-gray-400 transition">Skills</a></li>
                 <li><a href="#projects" class="hover:text-gray-400 transition">Projects</a></li>
                 <li><a href="#contact" class="hover:text-gray-400 transition">Contact</a></li>
             </ul>
@@ -179,54 +157,24 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section bg-black">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="skill-card p-8 rounded-xl fade-in">
-                    <h3 class="text-2xl font-bold mb-4">HTML</h3>
-                    <p class="text-gray-300">Building semantic and accessible web structures.</p>
-                </div>
-                <div class="skill-card p-8 rounded-xl fade-in">
-                    <h3 class="text-2xl font-bold mb-4">CSS</h3>
-                    <p class="text-gray-300">Styling with precision using Tailwind, Flexbox, and Grid.</p>
-                </div>
-                <div class="skill-card p-8 rounded-xl fade-in">
-                    <h3 class="text-2xl font-bold mb-4">JavaScript</h3>
-                    <p class="text-gray-300">Creating dynamic and interactive web experiences.</p>
-                </div>
-                <div class="skill-card p-8 rounded-xl fade-in">
-                    <h3 class="text-2xl font-bold mb-4">React</h3>
-                    <p class="text-gray-300">Developing modern, component-based user interfaces.</p>
-                </div>
-                <div class="skill-card p-8 rounded-xl fade-in">
-                    <h3 class="text-2xl font-bold mb-4">Node.js</h3>
-                    <p class="text-gray-300">Building scalable server-side applications.</p>
-                </div>
-                <div class="skill-card p-8 rounded-xl fade-in">
-                    <h3 class="text-2xl font-bold mb-4">WordPress</h3>
-                    <p class="text-gray-300">Crafting customizable and user-friendly websites.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Projects Section -->
     <section id="projects" class="section bg-black">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Project 1 -->
                 <div class="project-card p-8 rounded-xl fade-in">
                     <h3 class="text-2xl font-bold mb-4">Edumark</h3>
                     <p class="mb-6 text-gray-300">A dynamic platform revolutionizing education with interactive tools and resources.</p>
                     <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">View Project</a>
                 </div>
+                <!-- Project 2 -->
                 <div class="project-card p-8 rounded-xl fade-in">
                     <h3 class="text-2xl font-bold mb-4">Hotface.site</h3>
                     <p class="mb-6 text-gray-300">A sleek social platform connecting people through shared passions.</p>
                     <a href="https://www.hotface.site" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site</a>
                 </div>
+                <!-- Project 3 -->
                 <div class="project-card p-8 rounded-xl fade-in">
                     <h3 class="text-2xl font-bold mb-4">Stylx.shop</h3>
                     <p class="mb-6 text-gray-300">A modern e-commerce platform for trendy fashion and seamless shopping.</p>
@@ -239,9 +187,9 @@
     <!-- Contact Section -->
     <section id="contact" class="section bg-gray-800">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-extrabold mb-10 fade-in">Let's Connect</h2>
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Let's Connect</h2>
             <p class="text-lg mb-8 text-gray-300 fade-in">Got an idea or want to chat? Drop me a line!</p>
-            <a href="mailto:heyxrafi@hotmail.com" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition fade-in">Send Email</a>
+            <a href="mailto:rafi@example.com" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition fade-in">Send Email</a>
             <div class="mt-8 flex justify-center space-x-6 text-lg">
                 <a href="https://www.instagram.com/0xrafi?igsh=MWk2YzAwc2J4bW1xbA==" target="_blank" class="hover:text-gray-400 transition fade-in">Instagram</a>
             </div>
@@ -267,20 +215,20 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                // Close mobile menu after clicking a link
-                const navMenu = document.getElementById('nav-menu');
+                // Close mobile menu if open
+                const navLinks = document.getElementById('nav-links');
                 const hamburger = document.getElementById('hamburger');
-                navMenu.classList.remove('active');
+                navLinks.classList.remove('active');
                 hamburger.classList.remove('active');
             });
         });
 
         // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.getElementById('nav-links');
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
 
         // Fade-in animation on scroll
