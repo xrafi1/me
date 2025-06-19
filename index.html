@@ -3,123 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rafi's Portfolio - Web Developer & B.Tech Student in Silicon Valley">
-    <meta name="keywords" content="Rafi, web developer, portfolio, Silicon Valley, India, Edumark, hototface, stylx">
-    <meta name="author" content="Rafi">
-    <title>Rafi's Portfolio | Web Developer</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <title>Rafi's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Helvetica Neue', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background-color: #000000;
+            transition: background-color 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+        .hero-text {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .section {
+            min-height: 100vh;
+            padding: 4rem 1rem;
+        }
+        .project-card, .skill-card {
+            background: linear-gradient(145deg, #1C2526, #0A0A0A);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .project-card:hover, .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        /* Override Tailwind colors for black-and-white theme */
+        .text-gray-300, .text-gray-400, .text-gray-200 {
+            color: #B3B3B3 !important;
+        }
+        .bg-gray-800 {
+            background-color: #0A0A0A !important;
+        }
+        .hover\:bg-gray-200:hover {
+            background-color: #E6E6E6 !important;
+        }
+        .hover\:text-gray-400:hover {
+            color: #B3B3B3 !important;
+        }
+        .hover\:border-gray-400:hover {
+            border-color: #B3B3B3 !important;
+        }
+        .navbar-logo {
+            height: 40px; /* Adjusted for logo size */
+            width: auto;
+        }
+        @media (max-width: 768px) {
+            .navbar-logo {
+                height: 32px; /* Slightly smaller for mobile */
+            }
+        }
+        /* Mobile-friendly navbar styles */
+        .nav-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        .nav-menu.active {
+            transform: translateX(0);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%);
+            }
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+            .nav-menu a {
+                font-size: 1.5rem;
+            }
+        }
+        @media (min-width: 769px) {
+            .nav-menu {
+                flex-direction: row;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="Rafi's Logo" class="logo-img">
-            <span>Rafi</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav class="navbar fixed top-0 left-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#home">
+                <img src="https://i.ibb.co/QjpKj8jg/a56b53734556c81006c5ca3575f294aa.png" alt="Rafi's Logo" class="navbar-logo">
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu flex space-x-8 text-lg" id="nav-menu">
+                <li><a href="#about" class="hover:text-gray-400 transition">About</a></li>
+                <li><a href="#skills" class="hover:text-gray-400 transition">Skills</a></li>
+                <li><a href="#projects" class="hover:text-gray-400 transition">Projects</a></li>
+                <li><a href="#contact" class="hover:text-gray-400 transition">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- 3D Canvas Background -->
-    <canvas id="bgCanvas"></canvas>
-
     <!-- Home Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hey, I'm Rafi! 👋</h1>
-            <p>Crafting cool stuff with code from Silicon Valley</p>
-            <a href="#projects" class="cta-button">Explore My Work</a>
+    <section id="home" class="section flex items-center justify-center bg-black">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="hero-text font-extrabold mb-6">Crafting the Future<br>with Code</h2>
+            <p class="text-xl mb-8 text-gray-300">Rafi | Web Developer | Silicon Valley Dreamer</p>
+            <a href="#projects" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition">Explore Projects</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>Hey there! 👋</p>
-                <p>I’m Rafi, a web developer who’s all about crafting cool stuff with code.</p>
-                <p>I’m also a B.Tech student, totally hooked on tech and how it all works.</p>
-                <p>Born and raised in India, but now I’m here in Silicon Valley, chasing that big dream.</p>
-                <p>You’ll find me coding into the wee hours or dreaming up ideas over coffee at a café.</p>
-                <p>This is just the start of my adventure, and I’m pumped to keep writing it with code and a whole lot of guts. 💻✨</p>
+    <section id="about" class="section bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">About Me</h2>
+            <div class="max-w-3xl mx-auto text-lg leading-relaxed text-gray-300">
+                <p class="fade-in">Hey there! 👋</p>
+                <p class="mt-6 fade-in">I’m Rafi, a web developer who’s all about crafting cool stuff with code.</p>
+                <p class="mt-6 fade-in">I’m also a B.Tech student, totally hooked on tech and how it all works.</p>
+                <p class="mt-6 fade-in">Born and raised in India, but now I’m here in Silicon Valley, chasing that big dream.</p>
+                <p class="mt-6 fade-in">You’ll find me coding into the wee hours or dreaming up ideas over coffee at a café.</p>
+                <p class="mt-6 fade-in">This is just the start of my adventure, and I’m pumped to keep writing it with code and a whole lot of guts. 💻✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="skill-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">HTML</h3>
+                    <p class="text-gray-300">Building semantic and accessible web structures.</p>
+                </div>
+                <div class="skill-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">CSS</h3>
+                    <p class="text-gray-300">Styling with precision using Tailwind, Flexbox, and Grid.</p>
+                </div>
+                <div class="skill-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">JavaScript</h3>
+                    <p class="text-gray-300">Creating dynamic and interactive web experiences.</p>
+                </div>
+                <div class="skill-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">React</h3>
+                    <p class="text-gray-300">Developing modern, component-based user interfaces.</p>
+                </div>
+                <div class="skill-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Node.js</h3>
+                    <p class="text-gray-300">Building scalable server-side applications.</p>
+                </div>
+                <div class="skill-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">WordPress</h3>
+                    <p class="text-gray-300">Crafting customizable and user-friendly websites.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="project-grid">
-                <!-- Project 1: Edumark -->
-                <div class="project-card">
-                    <img src="assets/images/edumark.jpg" alt="Edumark Project">
-                    <div class="project-info">
-                        <h3>Edumark</h3>
-                        <p>An educational platform designed to streamline school results and enhance user experience with modern UI.</p>
-                        <a href="https://edumark.site" target="_blank" class="project-link">Visit Site</a>
-                    </div>
+    <section id="projects" class="section bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Edumark</h3>
+                    <p class="mb-6 text-gray-300">A dynamic platform revolutionizing education with interactive tools and resources.</p>
+                    <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">View Project</a>
                 </div>
-                <!-- Project 2: Hototface -->
-                <div class="project-card">
-                    <img src="assets/images/hototface.jpg" alt="Hototface Project">
-                    <div class="project-info">
-                        <h3>Hototface</h3>
-                        <p>A dynamic social platform with engaging features, built for seamless user interaction.</p>
-                        <a href="https://www.hototface.site" target="_blank" class="project-link">Visit Site</a>
-                    </div>
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Hotface.site</h3>
+                    <p class="mb-6 text-gray-300">A sleek social platform connecting people through shared passions.</p>
+                    <a href="https://www.hotface.site" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site</a>
                 </div>
-                <!-- Project 3: Stylx -->
-                <div class="project-card">
-                    <img src="assets/images/stylx.jpg" alt="Stylx Project">
-                    <div class="project-info">
-                        <h3>Stylx</h3>
-                        <p>A stylish e-commerce site focused on fashion, offering a sleek shopping experience.</p>
-                        <a href="https://www.stylx.shoo" target="_blank" class="project-link">Visit Site</a>
-                    </div>
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Stylx.shop</h3>
+                    <p class="mb-6 text-gray-300">A modern e-commerce platform for trendy fashion and seamless shopping.</p>
+                    <a href="https://www.stylx.shop" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <p>Got a project or just want to chat? Reach out!</p>
-            <form id="contact-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit" class="cta-button">Send Message</button>
-            </form>
+    <section id="contact" class="section bg-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-extrabold mb-10 fade-in">Let's Connect</h2>
+            <p class="text-lg mb-8 text-gray-300 fade-in">Got an idea or want to chat? Drop me a line!</p>
+            <a href="mailto:heyxrafi@hotmail.com" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition fade-in">Send Email</a>
+            <div class="mt-8 flex justify-center space-x-6 text-lg">
+                <a href="https://www.instagram.com/0xrafi?igsh=MWk2YzAwc2J4bW1xbA==" target="_blank" class="hover:text-gray-400 transition fade-in">Instagram</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Rafi. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
-            <a href="mailto:your.email@example.com">Email</a>
-        </div>
+    <footer class="bg-black py-6 text-center text-gray-300">
+        <p>© 2025 Rafi. Built with Code & Passion.</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/three.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu after clicking a link
+                const navMenu = document.getElementById('nav-menu');
+                const hamburger = document.getElementById('hamburger');
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 1s ease-in-out';
+                }
+            });
+        }, { threshold: 0.2 });
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
