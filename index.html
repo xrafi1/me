@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Rafi, a web developer in Silicon Valley, showcasing projects and skills.">
+    <meta name="keywords" content="Rafi, web developer, portfolio, Silicon Valley, projects">
+    <meta name="author" content="Rafi">
+    <meta property="og:title" content="Rafi's Portfolio">
+    <meta property="og:description" content="Explore Rafi's web development projects and journey in Silicon Valley.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    <meta property="og:url" content="YOUR_WEBSITE_URL">
     <title>Rafi's Portfolio</title>
+    <link rel="icon" type="image/png" href="https://via.placeholder.com/32">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             background-color: #000000;
             color: #FFFFFF;
-            font-family: 'Helvetica Neue', sans-serif;
+            font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
         .navbar {
-            transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-            backdrop-filter: blur(10px);
-            background-color: rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            background-color: #000000;
         }
         .navbar.scrolled {
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px);
+            background-color: #000000;
         }
         .hero-text {
             font-size: 4.5rem;
@@ -42,6 +46,11 @@
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
         }
+        .back-to-top {
+            background-color: #000000;
+            border: 1px solid #FFFFFF;
+            transition: opacity 0.3s ease;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -49,7 +58,6 @@
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
-        /* Override Tailwind colors to ensure black-and-white */
         .text-gray-300, .text-gray-400, .text-gray-200 {
             color: #B3B3B3 !important;
         }
@@ -65,9 +73,9 @@
         .hover\:border-gray-400:hover {
             border-color: #B3B3B3 !important;
         }
-        /* Mobile menu styles */
         .mobile-menu {
             transition: transform 0.3s ease-in-out;
+            background-color: #000000;
         }
         .mobile-menu.hidden {
             transform: translateX(100%);
@@ -84,21 +92,57 @@
         .hamburger.active .bar3 {
             transform: rotate(-45deg) translate(6px, -6px);
         }
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader {
+            border: 4px solid #B3B3B3;
+            border-top: 4px solid #FFFFFF;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar fixed top-0 left-0 w-full z-50 py-4" aria-label="Main navigation">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <h1 class="text-3xl font-extrabold tracking-tight">Rafi</h1>
-            <!-- Desktop Menu -->
             <ul class="hidden md:flex space-x-8 text-lg">
                 <li><a href="#home" class="hover:text-gray-400 transition">Home</a></li>
                 <li><a href="#about" class="hover:text-gray-400 transition">About</a></li>
+                <li><a href="#skills" class="hover:text-gray-400 transition">Skills</a></li>
                 <li><a href="#projects" class="hover:text-gray-400 transition">Projects</a></li>
+                <li><a href="#testimonials" class="hover:text-gray-400 transition">Testimonials</a></li>
+                <li><a href="#blog" class="hover:text-gray-400 transition">Blog</a></li>
                 <li><a href="#contact" class="hover:text-gray-400 transition">Contact</a></li>
             </ul>
-            <!-- Hamburger Menu -->
             <div class="md:hidden flex items-center">
                 <button class="hamburger focus:outline-none" aria-label="Toggle menu">
                     <div class="bar1 w-6 h-1 bg-white mb-1"></div>
@@ -107,18 +151,20 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu hidden md:hidden fixed top-0 right-0 h-full w-3/4 bg-black bg-opacity-95 backdrop-filter backdrop-blur-lg border-l border-gray-800 p-6">
+        <div class="mobile-menu hidden md:hidden fixed top-0 right-0 h-full w-3/4 bg-black border-l border-gray-800 p-6">
             <ul class="flex flex-col space-y-6 text-lg mt-16">
                 <li><a href="#home" class="hover:text-gray-400 transition">Home</a></li>
                 <li><a href="#about" class="hover:text-gray-400 transition">About</a></li>
+                <li><a href="#skills" class="hover:text-gray-400 transition">Skills</a></li>
                 <li><a href="#projects" class="hover:text-gray-400 transition">Projects</a></li>
+                <li><a href="#testimonials" class="hover:text-gray-400 transition">Testimonials</a></li>
+                <li><a href="#blog" class="hover:text-gray-400 transition">Blog</a></li>
                 <li><a href="#contact" class="hover:text-gray-400 transition">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Rest of your original HTML remains unchanged -->
+    <!-- Home Section -->
     <section id="home" class="section flex items-center justify-center bg-black">
         <div class="container mx-auto px-4 text-center">
             <h2 class="hero-text font-extrabold mb-6">Crafting the Future<br>with Code</h2>
@@ -126,6 +172,8 @@
             <a href="#projects" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition">Explore Projects</a>
         </div>
     </section>
+
+    <!-- About Section -->
     <section id="about" class="section bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">About Me</h2>
@@ -139,6 +187,41 @@
             </div>
         </div>
     </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">HTML</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">CSS</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">JavaScript</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">React</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">Node.js</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">WordPress</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">Tailwind CSS</h3>
+                </div>
+                <div class="project-card p-6 rounded-xl text-center fade-in">
+                    <h3 class="text-xl font-semibold">Git</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
     <section id="projects" class="section bg-black">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Projects</h2>
@@ -146,36 +229,104 @@
                 <div class="project-card p-8 rounded-xl fade-in">
                     <h3 class="text-2xl font-bold mb-4">Edumark</h3>
                     <p class="mb-6 text-gray-300">A dynamic platform revolutionizing education with interactive tools and resources.</p>
-                    <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">View Project</a>
+                    <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition" onclick="alert('Coming Soon!')">View Project</a>
                 </div>
                 <div class="project-card p-8 rounded-xl fade-in">
                     <h3 class="text-2xl font-bold mb-4">Hotface.site</h3>
                     <p class="mb-6 text-gray-300">A sleek social platform connecting people through shared passions.</p>
-                    <a href="https://www.hotface.site" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site</a>
+                    <a href="https://www.hotface.site" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site <span class="text-sm">↗</span></a>
                 </div>
                 <div class="project-card p-8 rounded-xl fade-in">
                     <h3 class="text-2xl font-bold mb-4">Stylx.shop</h3>
                     <p class="mb-6 text-gray-300">A modern e-commerce platform for trendy fashion and seamless shopping.</p>
-                    <a href="https://www.stylx.shop" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site</a>
+                    <a href="https://www.stylx.shop" target="_blank" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Visit Site <span class="text-sm">↗</span></a>
                 </div>
             </div>
         </div>
     </section>
-    <section id="contact" class="section bg-gray-800">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Let's Connect</h2>
-            <p class="text-lg mb-8 text-gray-300 fade-in">Got an idea or want to chat? Drop me a line!</p>
-            <a href="mailto:rafi@example.com" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition fade-in">Send Email</a>
-            <div class="mt-8 flex justify-center space-x-6 text-lg">
-                <a href="https://www.instagram.com/0xrafi?igsh=MWk2YzAwc2J4bW1xbA==" target="_blank" class="hover:text-gray-400 transition fade-in">Instagram</a>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Testimonials</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <p class="text-gray-300 mb-4">"Rafi's dedication to crafting clean, innovative websites is inspiring. His work on Edumark was exceptional!"</p>
+                    <h4 class="font-semibold">Jane Doe, Mentor</h4>
+                </div>
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <p class="text-gray-300 mb-4">"Working with Rafi was a pleasure. His attention to detail and passion for coding shine through in every project."</p>
+                    <h4 class="font-semibold">John Smith, Client</h4>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Blog Preview Section -->
+    <section id="blog" class="section bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Blog</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Building a Portfolio with Tailwind</h3>
+                    <p class="mb-6 text-gray-300">Learn how I used Tailwind CSS to create a sleek, responsive portfolio.</p>
+                    <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Read More</a>
+                </div>
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">My Journey to Silicon Valley</h3>
+                    <p class="mb-6 text-gray-300">From India to the tech capital, here’s how I’m chasing my dreams.</p>
+                    <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Read More</a>
+                </div>
+                <div class="project-card p-8 rounded-xl fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Why I Love React</h3>
+                    <p class="mb-6 text-gray-300">Exploring the power of React for building dynamic web apps.</p>
+                    <a href="#" class="text-white font-semibold border-b-2 border-white hover:border-gray-400 transition">Read More</a>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition fade-in">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-extrabold mb-10 text-center fade-in">Let's Connect</h2>
+            <p class="text-lg mb-8 text-gray-300 fade-in">Got an idea or want to chat? Drop me a message!</p>
+            <form action="https://formspree.io/f/your_form_id" method="POST" class="max-w-md mx-auto fade-in">
+                <input type="text" name="name" placeholder="Your Name" required class="w-full mb-4 p-3 rounded bg-black text-white border border-gray-300">
+                <input type="email" name="email" placeholder="Your Email" required class="w-full mb-4 p-3 rounded bg-black text-white border border-gray-300">
+                <textarea name="message" placeholder="Your Message" required class="w-full mb-4 p-3 rounded bg-black text-white border border-gray-300" rows="5"></textarea>
+                <button type="submit" class="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition w-full">Submit</button>
+            </form>
+            <div class="mt-8 flex justify-center space-x-6 text-lg">
+                <a href="https://www.instagram.com/0xrafi" target="_blank" class="hover:text-gray-400 transition fade-in">Instagram <span class="text-sm">↗</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back-to-Top Button -->
+    <button id="back-to-top" class="back-to-top fixed bottom-4 right-4 p-4 rounded-full text-white opacity-0 invisible" aria-label="Back to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Footer -->
     <footer class="bg-black py-6 text-center text-gray-300">
-        <p>© 2025 Rafi. Built with Code & Passion.</p>
+        <p>© <span id="year"></span> Rafi. Built with Code & Passion.</p>
     </footer>
 
     <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 1000);
+        });
+
         // Navbar scroll effect
         let timeout;
         window.addEventListener('scroll', () => {
@@ -183,6 +334,10 @@
             timeout = setTimeout(() => {
                 const navbar = document.querySelector('.navbar');
                 navbar.classList.toggle('scrolled', window.scrollY > 50);
+                // Back-to-top button visibility
+                const backToTop = document.getElementById('back-to-top');
+                backToTop.classList.toggle('opacity-0', window.scrollY < 200);
+                backToTop.classList.toggle('invisible', window.scrollY < 200);
             }, 100);
         });
 
@@ -212,6 +367,11 @@
             });
         });
 
+        // Back-to-top button functionality
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
         // Fade-in animation on scroll
         const fadeElements = document.querySelectorAll('.fade-in');
         const observer = new IntersectionObserver((entries) => {
@@ -223,6 +383,9 @@
             });
         }, { threshold: 0.2 });
         fadeElements.forEach(el => observer.observe(el));
+
+        // Dynamic footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
